@@ -2,15 +2,15 @@
 #include <netdb.h>
 #include <string.h>
 
-void lookupIP() {
+void lookupIP(char *host) {
     int i;
     struct hostent *hd;
     struct in_addr **addr_list;
     char **aliases;
-    hd = gethostbyname("www.google.com");
+    hd = gethostbyname(host);
     addr_list = (struct in_addr **) hd->h_addr_list;
     aliases = hd->h_aliases;
-    printf("DNS lookup for www.google.com\n\n");
+    printf("DNS lookup for %s\n\n", host);
     printf("Resolved IP Addresses:\n");
     for (i=0; addr_list[i]; i++) {
         printf("%u: %s\n", i, inet_ntoa(*addr_list[i]));
