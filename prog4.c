@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <netdb.h>
+#include <string.h>
 
 void lookupIP() {
     int i;
@@ -20,7 +21,6 @@ void lookupIP() {
         printf("%u: %s\n", i, aliases[i]);
     }
     printf("No. of Aliases resolved: %d\n", i);
-    return 0;
 }
 
 void lookupHost(char *addr) {
@@ -30,7 +30,7 @@ void lookupHost(char *addr) {
 }
 
 void lookup(char *in) {
-   if ('0' <= in[1] && in[1] <= '9') {
+   if ('0' <= in[0] && in[0] <= '9') {
        return lookupHost(in);
    } else {
        return lookupIP(in);
@@ -38,14 +38,15 @@ void lookup(char *in) {
 }
 
 int main(int argc, char **argv) {
-    char in[50];
     if (argc == 1) {
         while (1) {
+            char in[50];
             printf("\n> ");
             scanf("%s", in);
-            if (stricmp(in, "exit") == 0) {
+            if (strcmp(in, "exit") == 0) {
                 return 0;
             }
+            lookup(in);
         }
     } else if (argc == 2) {
         lookup(argv[1]);
