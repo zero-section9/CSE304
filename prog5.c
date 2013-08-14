@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <errno.h>
 
 int main(int argc, char *argv[]) {
     char buf[100];
@@ -24,7 +23,7 @@ int main(int argc, char *argv[]) {
     printf("Initializing Server... ");
     sock_desc = socket(AF_INET, SOCK_STREAM, 0);
     server.sin_family = AF_INET;
-    server.sin_addr.s_addr = inet_addr("127.0.0.1");
+    server.sin_addr.s_addr = INADDR_ANY;
     server.sin_port = port;
 
     printf("done.\nBinding Server... ");

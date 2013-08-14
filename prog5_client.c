@@ -5,7 +5,6 @@
 #include <stdlib.h>
 #include <arpa/inet.h>
 #include <unistd.h>
-#include <errno.h>
 
 int main(int argc, char *argv[]) {
     char buf[100];
@@ -22,7 +21,7 @@ int main(int argc, char *argv[]) {
     sock_desc = socket(AF_INET, SOCK_STREAM, 0);
     memset(&client, 0, sizeof(client));
     client.sin_family = AF_INET;
-    client.sin_addr.s_addr = inet_addr("127.0.0.1");
+    client.sin_addr.s_addr = INADDR_ANY;
     client.sin_port = port;
 
     printf("Establishing Connection... ");
