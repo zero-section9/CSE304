@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
     while (1) {
         memset(&client, 0 , sizeof(client));
         temp_sock_desc = accept(sock_desc, (struct sockaddr *) &client, &len);
-        now = time(0);
+        time(&now);
         /*gtm = localtime(&now);
         snprintf(time_str, sizeof(time_str), "%2d.%2d.%2d %2d:%2d:%2d\n",
                  gtm->tm_mday,
