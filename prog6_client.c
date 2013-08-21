@@ -5,6 +5,7 @@
 #include <stdlib.h>
 #include <arpa/inet.h>
 #include <unistd.h>
+#include <errno.h>
 
 int main(int argc, char *argv[]) {
     char buf[100];
@@ -31,7 +32,15 @@ int main(int argc, char *argv[]) {
         perror("connect");
         return k;
     }
-    printf("tested successfully.\n");
+    printf("done\n");
+    k = recv(sock_desc, buf, sizeof(buf), 0);
+    if (k < 0) {
+        printf("\n");
+        perror("while receiving");
+        return 1;
+    } else {
+        printf("Server Time: %s", buf);
+    }
     close(sock_desc);
 
     return 0;
